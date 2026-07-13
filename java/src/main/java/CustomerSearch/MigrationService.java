@@ -100,11 +100,14 @@ public class MigrationService {
 							customer,
 							targetType,
 							batchStartTime);
+					
+					System.out.println("INSERT処理完了");
 
 				}
 
 				// 1000件単位でコミット
-				con.commit();
+				//con.commit();
+				con.rollback();
 			}
 
 			catch (Exception e) {
