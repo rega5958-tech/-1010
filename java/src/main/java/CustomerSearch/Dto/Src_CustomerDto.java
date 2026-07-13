@@ -2,12 +2,12 @@ package main.java.CustomerSearch.Dto;
 
 import java.sql.Date;
 
-public class Tgt_CustomerSearchDto {
+public class Src_CustomerDto {
 
 	private int customerId;
 	private String customerName;
 	private String address;
-	private int customerTypeId;
+	private String customerTypeId;
 	private int deleteFlag;
 	private String createdBy;
 	private Date createdAt;
@@ -39,11 +39,11 @@ public class Tgt_CustomerSearchDto {
 		this.address = address;
 	}
 
-	public int getCustomerTypeId() {
+	public String getCustomerTypeId() {
 		return customerTypeId;
 	}
 
-	public void setCustomerTypeId(int customerTypeId) {
+	public void setCustomerTypeId(String customerTypeId) {
 		this.customerTypeId = customerTypeId;
 	}
 
