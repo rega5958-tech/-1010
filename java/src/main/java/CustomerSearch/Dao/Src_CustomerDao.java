@@ -11,9 +11,7 @@ import main.java.CustomerSearch.Dto.Src_CustomerDto;
 
 public class Src_CustomerDao {
 
-	public List<Src_CustomerDto> getCustomerList(Connection con,
-			int offset,
-			int limit) throws SQLException {
+	public List<Src_CustomerDto> getCustomerList(Connection con, int offset, int limit) throws SQLException {
 
 		List<Src_CustomerDto> customerList = new ArrayList<>();
 
@@ -27,11 +25,11 @@ public class Src_CustomerDao {
 				"WHERE DELETE_FLAG = 0 " +
 				"ORDER BY CUSTOMER_ID " +
 				"FETCH FIRST 1 ROW ONLY";
-				//"OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+		//"OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
-			ps.setInt(1, offset);
-			ps.setInt(2, limit);
+			/*ps.setInt(1, offset);
+			ps.setInt(2, limit);*/
 			try (ResultSet Res = ps.executeQuery()) {
 
 				while (Res.next()) {

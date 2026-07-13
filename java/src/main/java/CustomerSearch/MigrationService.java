@@ -50,6 +50,7 @@ public class MigrationService {
 
 		while (true) {
 
+			//DAOに取得件数指定
 			List<Src_CustomerDto> customerList = srcDao.getCustomerList(con, offset, limit);
 
 			System.out.println("取得件数=" + customerList.size());
@@ -106,8 +107,9 @@ public class MigrationService {
 				}
 
 				// 1000件単位でコミット
-				//con.commit();
-				con.rollback();
+				con.commit();
+				//con.rollback();
+				break;
 			}
 
 			catch (Exception e) {
@@ -117,7 +119,7 @@ public class MigrationService {
 				throw e;
 			}
 
-			offset += limit;
+			//offset += limit;
 			//TGT_CUSTOMER登録
 
 			//終了ログ
