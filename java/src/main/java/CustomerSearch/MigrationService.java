@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import main.java.CustomerSearch.Dto.Mst_Customer_Type_ConversionDto;
 import main.java.CustomerSearch.Dto.Src_CustomerDto;
@@ -12,6 +14,8 @@ import main.java.CustomerSearch.Dao.Src_CustomerDao;
 import main.java.CustomerSearch.Dao.Tgt_CustomerSearchDao;
 
 public class MigrationService {
+
+	private static final Logger logger = LoggerFactory.getLogger(MigrationService.class);
 
 	Timestamp batchStartTime = new Timestamp(System.currentTimeMillis());
 
@@ -62,6 +66,8 @@ public class MigrationService {
 			//変換マスタテーブル、Src_CustomerでのCUSTOMER_TYPE_ID値変換
 
 			try {
+				
+				int insertCount = 0;
 
 				for (Src_CustomerDto customer : customerList) {
 
@@ -79,8 +85,9 @@ public class MigrationService {
 
 					if (targetType == null) {
 
-						System.out.println(
-								"変換エラー CUSTOMER_ID="
+						//変換エラーlogger
+						logger.error(
+								"\nERROR CUSTOMER_ID="
 										+ customer.getCustomerId()
 										+ " CUSTOMER_TYPE_ID="
 										+ customer.getCustomerTypeId());
@@ -101,15 +108,16 @@ public class MigrationService {
 							customer,
 							targetType,
 							batchStartTime);
-					
-					System.out.println("INSERT処理完了");
 
 				}
 
 				// 1000件単位でコミット
 				con.commit();
+
+				System.out.println("INSERT処理完了");
+
+				offset += limit;
 				//con.rollback();
-				break;
 			}
 
 			catch (Exception e) {
@@ -118,9 +126,6 @@ public class MigrationService {
 
 				throw e;
 			}
-
-			//offset += limit;
-			//TGT_CUSTOMER登録
 
 			//終了ログ
 

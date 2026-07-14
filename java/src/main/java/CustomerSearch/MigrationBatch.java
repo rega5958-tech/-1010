@@ -10,7 +10,8 @@ public class MigrationBatch {
 
 		System.out.println("バッチ開始");
 		
-		/*if (args.length == 0) {
+		
+		if (args.length == 0) {
 		    args = new String[] { "ALL" };
 		}
 
@@ -29,10 +30,10 @@ public class MigrationBatch {
 		        
 		    default:
 		        System.out.println("不正な引数：" + argstarget);
-		        break;
+		        return;
 		    }
 		}
-*/
+
 		
 		String url = "jdbc:oracle:thin:@oracle:1521/FREEPDB1";
 		String user = "system";
