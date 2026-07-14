@@ -133,16 +133,19 @@ public class MigrationService {
 
 		}
 
+		//終了時間
 		Timestamp batchEndTime = new Timestamp(System.currentTimeMillis());
 
+		//処理時間
+		long elapsedTime =  batchEndTime.getTime()- batchStartTime.getTime();
 		//終了ログ
 		logger.info(
 				"\n==================================================\n" +
 						"Migration End\n" +
 						"Table      : SRC_CUSTOMER => TGT_CUSTOMER\n" +
 						"End Time   : " + batchEndTime + "\n" +
-						// "Elapsed    : " + String.format("%.3f", elapsedSec) + " sec\n" +
-						//"Inserted Count : " + insertCount + "\n" +
+						 "Elapsed    : " + elapsedTime + " sec\n" +
+						"Inserted Count : " + insertCount + "\n" +
 						"==================================================");
 
 	}

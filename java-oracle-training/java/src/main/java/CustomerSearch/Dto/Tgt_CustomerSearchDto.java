@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class Tgt_CustomerSearchDto {
 
+	
+
 	private int customerId;
 	private String customerName;
 	private String address;
@@ -85,5 +87,13 @@ public class Tgt_CustomerSearchDto {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	@Override
+	public String toString() {
+		return "Tgt_CustomerSearchDto [customerId=" + customerId + ", customerName=" + customerName + ", address="
+				+ address + ", customerTypeId=" + customerTypeId + ", deleteFlag=" + deleteFlag + ", createdBy="
+				+ createdBy + ", createdAt=" + createdAt + ", updatedBy=" + updatedBy + ", updatedAt=" + updatedAt
+				+ "]";
 	}
 }
