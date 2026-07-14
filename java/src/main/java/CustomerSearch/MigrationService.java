@@ -32,12 +32,12 @@ public class MigrationService {
 		}
 
 		//開始ログ
-
-		System.out.println("==================================================");
-		System.out.println("Migration Start");
-		System.out.println("Table      : SRC_CUSTOMER => TGT_CUSTOMER");
-		System.out.println("Start Time : " + batchStartTime);
-		System.out.println("==================================================");
+		logger.info(
+		("\n==================================================\n")+
+		("Migration Start\n")+
+		("Table      : SRC_CUSTOMER => TGT_CUSTOMER\n")+
+		("Start Time : " + batchStartTime)+
+		("\n==================================================\n"));
 
 		//変換マスタ取得
 
@@ -95,13 +95,13 @@ public class MigrationService {
 						continue;
 					}
 
-					System.out.println(
+					/*System.out.println(
 							"変換成功 CUSTOMER_ID="
 									+ customer.getCustomerId()
 									+ " : "
 									+ customer.getCustomerTypeId()
 									+ " → "
-									+ targetType);
+									+ targetType);*/
 					// INSERT
 					migration.insertCustomer(
 							con,
@@ -117,7 +117,7 @@ public class MigrationService {
 				System.out.println("INSERT処理完了");
 
 				offset += limit;
-				//con.rollback();
+				
 			}
 
 			catch (Exception e) {
